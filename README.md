@@ -1,8 +1,27 @@
 # pebble-rtltr
+
+RTLTR for Pebble - create apps/watchfaces that display RTL on every watch
+
+## Description
+
 RTLTR for Pebble library enables developers to add an app-setting to switch between logical and visual character encoding to make apps/watchfaces display RTL texts correctly on both the original and on RTL enabled firmwares (like https://elbbeP.cpfx.ca/)
 
-## Usage
+[![NPM](https://nodei.co/npm/pebble-rtltr.png?downloads=true&stars=true)](https://nodei.co/npm/pebble-rtltr/)
+
+[![NPM](https://nodei.co/npm-dl/pebble-rtltr.png?months=1)](https://nodei.co/npm/pebble-rtltr/)
+
+## Badges
+
+![dependencies](https://david-dm.org/flocsy/pebble-rtltr.png)
+
+## Installation
+
 ```
+pebble package install pebble-rtltr --save
+```
+
+## Usage
+```c
 #include "rtltr.h"
 
 /**
@@ -91,4 +110,22 @@ int main() {
 }
 ```
 
-Note: RTLTR only works with single-line strings.
+## License
+
+GNU GENERAL PUBLIC LICENSE 3.0
+
+## Credits
+
+pebble-rtltr library was written by Gavriel Fleischer [pebble-rtltr](https://github.com/flocsy/pebble-rtltr)
+
+pebble-rtltr is based on code from Collin Fair [elbbeP](https://github.com/cpfair/elbbep)
+
+## Change log
+
+#### 0.1.0
+
+* first release.
+
+## Note
+
+RTLTR only works with single-line strings.
