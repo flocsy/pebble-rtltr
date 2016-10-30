@@ -35,3 +35,4 @@
 /build
 .lock-waf_darwin_build
 /.idea
+dist.zip

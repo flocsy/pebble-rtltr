@@ -1,9 +1,9 @@
 {
   "name": "pebble-rtltr",
-  "author": "Gavriel Fleischer <flocsy@gmail.com>",
+  "author": "Gavriel Fleischer <flocsy@gmail.com> (http://neswork.com)",
   "version": "0.1.0",
   "description": "RTLTR for Pebble library enables developers to add an app-setting to switch between logical and visual character encoding to make apps/watchfaces display RTL texts correctly on both the original and on RTL enabled firmwares (like https://elbbeP.cpfx.ca/)",
-  "license": "MIT",
+  "license": "GPLv3",
   "repository": "flocsy/pebble-rtltr",
   "files": ["dist.zip"],
   "keywords": ["pebble-package", "pebble-library", "RTL", "Hebrew", "Arabic", "Pebble", "elbbeP"],
@@ -16,6 +16,9 @@
       "chalk",
       "diorite",
       "emery"
+    ],
+    "messageKeys": [
+      "ENABLE_RTLTR"
     ]
   }
 }
