@@ -2,6 +2,7 @@
  * Copyright (c) 2016 Gavriel Fleischer <flocsy@gmail.com>
  */
 
+#include "is_elbbep.h"
 #include "rtltr.h"
 #include "rtl.h"
 
