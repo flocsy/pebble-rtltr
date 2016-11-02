@@ -27,8 +27,9 @@ static void rtltr_save_settings() {
 void rtltr_load_settings() {
   if (persist_exists(RTLTR_KEY)) {
     is_rtltr_setting_on = persist_read_bool(RTLTR_KEY);
-    rtltr_reverse_registered_strings();
   }
+  // we always need to run reverse once in order for the is_elbbep detection to kick in
+  rtltr_reverse_registered_strings();
 }
 
 void rtltr_enable(bool enable) {
@@ -97,7 +98,7 @@ void rtltr_reverse_string(const char* str) {
 }
 
 void rtltr_reverse_registered_strings() {
-  if (is_rtltr_applied != is_rtltr_setting_on) {
+  if ((is_rtltr_applied != is_rtltr_setting_on) ^ is_elbbep()) {
     is_rtltr_applied = is_rtltr_setting_on;
     for (size_t a = 0; a < rtltr_registered_string_arrays_size; a++) {
       for (size_t s = 0; s < rtltr_registered_string_arrays[a].size; s++) {

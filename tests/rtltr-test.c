@@ -25,6 +25,7 @@ static char* rtltr_reverse_string_once_test(void) {
 //    rtltr_register_string(str);
 //    rtltr_reverse_registered_strings();
     printf("orig: %p %s\n", orig, orig);
+    printf("expected: %p %s\n", expected, expected);
     printf("str before: %p %s, %lu\n", str, str, strlen(str));
     rtl_apply((char*)str, (char*)(str+strlen(str)));
     printf("str after: %p %s\n", str, str);
