@@ -2,12 +2,12 @@
 #include "font_ranges.h"
 #include "range.h"
 #include "text_shaper_lut.h"
-#include "rtltr.h"
+#include "rtltr_config.h"
 
 bool is_rtl(uint16_t cp) {
   return
          RANGE(cp, 0x590, 0x600) // Hebrew
-#if defined(RTLTR_INCLUDE_ARABIC)
+#if defined(RTLTR_INCLUDE_ARABIC) && RTLTR_INCLUDE_ARABIC == 1
          || RANGE(cp, 0x60E,
                0x660) || // First part of Arabic block - up to numerals
          RANGE(cp, 0x66D, 0x6FF + 1) || // Balance of Arabic block
@@ -29,7 +29,7 @@ bool is_neutral(uint16_t cp) {
          RANGE(cp, 0xA6, 0xA7) ||   // ...
          RANGE(cp, 0xA8, 0xB0) ||   // ...
          RANGE(cp, 0xB7, 0xBf) ||   // ...
-#if defined(RTLTR_INCLUDE_ARABIC)
+#if defined(RTLTR_INCLUDE_ARABIC) && RTLTR_INCLUDE_ARABIC == 1
          RANGE(cp, 0x600, 0x60E) || // Arabic punctuation & stuff.
 #endif
          is_zero_width(cp); // So invisible characters don't break stuff.

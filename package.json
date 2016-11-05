@@ -1,7 +1,7 @@
 {
   "name": "pebble-rtltr",
   "author": "Gavriel Fleischer <flocsy@gmail.com> (http://neswork.com)",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "RTLTR for Pebble - create apps/watchfaces that display RTL on every watch regardless of the firmware",
   "license": "GPLv3",
   "repository": "flocsy/pebble-rtltr",
@@ -18,10 +18,11 @@
   "dependencies": {},
   "scripts": {
     "clean": "rm -rf build/src build/include",
-    "distclean": "npm run clean && rm -rf build dist.zip",
-    "download-sdk": "bin/download-sdk.sh",
-    "test": "npm run clean && npm run download-sdk && make test",
-    "pebble-publish": "pebble clean && pebble build && pebble package publish"
+    "distclean": "npm run clean && rm -rf build dist.zip && pebble clean",
+    "download-sdk": "npm run clean && bin/download-sdk.sh",
+    "build": "npm run download-sdk && pebble build",
+    "test": "make test",
+    "pebble-publish": "npm run clean && npm run build && pebble package publish"
   },
   "pebble": {
     "projectType": "package",
@@ -34,7 +35,7 @@
       "emery"
     ],
     "messageKeys": [
-      "ENABLE_RTLTR"
+      "RTLTR_OVERRIDE"
     ]
   }
 }
