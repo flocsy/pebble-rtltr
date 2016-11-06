@@ -70,7 +70,7 @@ void rtltr_strings_are_visual_encoded(void) {
 void rtltr_reverse_string(char* const str) {
   if (str && *str) {
 #if defined(RTLTR_ENABLE_MULTILINE_STRINGS) && RTLTR_ENABLE_MULTILINE_STRINGS == 1
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string(multiline): before: %p -> %s", str, str);
+//    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string(multiline): before: %p -> %s", str, str);
     const char *start = (const char*)str;
     char *end;
     do {
@@ -82,10 +82,10 @@ void rtltr_reverse_string(char* const str) {
       start = end + 1;
     } while (*end != '\0');
 #else
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string: before: %p -> %s", str, str);
+//    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string: before: %p -> %s", str, str);
     rtl_apply(str, str + strlen(str) - 1);
 #endif
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string: after: %p -> %s", str, str);
+//    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string: after: %p -> %s", str, str);
   }
 }
 

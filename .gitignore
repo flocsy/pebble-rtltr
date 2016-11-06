@@ -38,6 +38,7 @@
 /npm-debug.log
 
 
+/cache/
 /build/
 .lock-waf_darwin_build
 /.idea
