@@ -1,18 +1,10 @@
-# pebble-rtltr
+# pebble-rtltr [![Code Climate](https://codeclimate.com/github/flocsy/pebble-rtltr/badges/gpa.svg)](https://codeclimate.com/github/flocsy/pebble-rtltr) [![Issue Count](https://codeclimate.com/github/flocsy/pebble-rtltr/badges/issue_count.svg)](https://codeclimate.com/github/flocsy/pebble-rtltr) [![dependencies](https://david-dm.org/flocsy/pebble-rtltr.png?branch=master)](https://david-dm.org/flocsy/pebble-rtltr)
 
 RTLTR for Pebble - create apps/watchfaces that display RTL on every watch regardless of the firmware
 
 ## Description
 
 RTLTR for Pebble library enables developers to add an app-setting to switch between logical and visual character encoding to make apps/watchfaces display RTL texts correctly on both the original and on RTL enabled firmwares (like https://elbbeP.cpfx.ca/)
-
-## Badges
-
-[![NPM](https://nodei.co/npm/pebble-rtltr.png?downloads=true&stars=true)](https://nodei.co/npm/pebble-rtltr/)
-
-[![NPM](https://nodei.co/npm-dl/pebble-rtltr.png?months=1)](https://nodei.co/npm/pebble-rtltr/)
-
-![dependencies](https://david-dm.org/flocsy/pebble-rtltr.png)
 
 ## Installation
 
