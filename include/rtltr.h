@@ -8,6 +8,7 @@
 
 void rtltr_ensure_registered_string_arrays_capacity(size_t capacity);
 void rtltr_register_string_array(char* const str_arr[], size_t str_arr_size);
+void rtltr_register_char_matrix(char* const matrix[], size_t count, size_t str_len);
 void rtltr_ensure_registered_strings_capacity(size_t capacity);
 void rtltr_register_string(char* const str);
 

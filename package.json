@@ -1,7 +1,7 @@
 {
   "name": "pebble-rtltr",
   "author": "Gavriel Fleischer <flocsy@gmail.com> (http://neswork.com)",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "RTLTR for Pebble - create apps/watchfaces that display RTL on every watch regardless of the firmware",
   "license": "GPLv3",
   "repository": "flocsy/pebble-rtltr",

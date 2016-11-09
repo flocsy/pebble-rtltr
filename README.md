@@ -27,21 +27,24 @@ or even crash.
 You can collect your RTL strings in arrays or have them separately.
 
 ```c
-char example_hebrew_strings_array1[NUM_STRINGS1][14] = {
+char example_hebrew_char_matrix[NUM_STRINGS1][STRING_LEN] = {
 	"שלום",
 	"להתראות"
 };
+
 char tishrey[]="תשרי", hesvan[]="חשוון";
-char *example_hebrew_strings_array2[NUM_STRINGS2] = {
+char *example_hebrew_strings_array[NUM_STRINGS2] = {
 	tishrey,
 	hesvan
 };
+
 char example_hebrew_string1[] = "אחד";
 char example_hebrew_string2[] = "שניים";
 ```
 
-### Register your string arrays
-If you have your RTL strings in arrays like `char *str_arr[]` or `char str_arr[][]`:
+### Register your strings
+
+#### If you have your RTL strings in arrays like `char *str_arr[]`:
 
 It is recommended to allocate the heap for the total number of arrays you have in your app before
 the 1st call to `rtltr_register_string_array`, so that it's allocated once for all arrays and not reallocated
@@ -55,12 +58,26 @@ rtltr_ensure_registered_string_arrays_capacity(2);
 Register the string arrays containing the RTL texts.
 
 ```c
-rtltr_register_string_array(example_hebrew_strings_array1, NUM_STRINGS1);
-rtltr_register_string_array(example_hebrew_strings_array2, NUM_STRINGS2);
+rtltr_register_string_array(example_hebrew_strings_array, NUM_STRINGS2);
 ```
 
-### Register your strings
-If you have your RTL strings in variables like `char str[]`:
+#### If you have your RTL strings in a matrix like `char str_arr[][]`:
+
+It is recommended to allocate the heap for the total number of strings you have in your app before
+the 1st call to `rtltr_register_char_matrix`, so that it's allocated once for all strings and not reallocated
+and copied when adding another string.
+
+```c
+rtltr_ensure_registered_strings_capacity(NUM_STRINGS1);
+```
+
+Register the string arrays containing the RTL texts.
+
+```c
+rtltr_register_char_matrix(example_hebrew_char_matrix, NUM_STRINGS1, STRING_LEN);
+```
+
+#### If you have your RTL strings in variables like `char str[]`:
 
 It is recommended to allocate the heap for the total number of strings you have in your app before
 the 1st call to `rtltr_register_string`, so that it's allocated once for all strings and not reallocated
@@ -181,18 +198,28 @@ if (is_elbbep()) {...}
 
 ## Examples
 
-### Strings are logical encoded and in arrays, no app-settings
+### Strings are in a matrix, logical encoded, no app-settings
 ```c
 void app_init_rtltr(void) {
-  rtltr_ensure_registered_string_arrays_capacity(2);
-  rtltr_register_string_array(example_hebrew_strings_array1, NUM_STRINGS1);
-  rtltr_register_string_array(example_hebrew_strings_array2, NUM_STRINGS2);
+  rtltr_ensure_registered_strings_capacity(NUM_STRINGS1);
+  rtltr_register_char_matrix(example_hebrew_char_matrix, NUM_STRINGS1, STRING_LEN);
   rtltr_init();
   rtltr_free();
 }
 ```
 
-### Strings are logical encoded and in individal variables, no app-settings
+### Strings are in arrays, logical encoded, no app-settings
+```c
+void app_init_rtltr(void) {
+  rtltr_ensure_registered_string_arrays_capacity(2);
+  rtltr_register_string_array(example_hebrew_strings_array4, NUM_STRINGS5);
+  rtltr_register_string_array(example_hebrew_strings_array5, NUM_STRINGS5);
+  rtltr_init();
+  rtltr_free();
+}
+```
+
+### Strings are in individal pointers, logical encoded, no app-settings
 ```c
 void app_init_rtltr(void) {
   rtltr_ensure_registered_strings_capacity(2);
@@ -203,12 +230,14 @@ void app_init_rtltr(void) {
 }
 ```
 
-### You can have both some of the strings in arrays and others individually registered
+### You can have some of the strings in matrix or arrays and others individually registered
 ```c
 void app_init_rtltr(void) {
-  rtltr_ensure_registered_string_arrays_capacity(2);
-  rtltr_register_string_array(example_hebrew_strings_array1, NUM_STRINGS1);
-  rtltr_register_string_array(example_hebrew_strings_array2, NUM_STRINGS2);
+  rtltr_ensure_registered_strings_capacity(NUM_STRINGS1);
+  rtltr_register_char_matrix(example_hebrew_char_matrix, NUM_STRINGS1, STRING_LEN);
+
+  rtltr_ensure_registered_string_arrays_capacity(N);
+  rtltr_register_string_array(example_hebrew_strings_array, NUM_STRINGS2);
 
   rtltr_ensure_registered_strings_capacity(2);
   rtltr_register_string(example_hebrew_string1);
@@ -219,12 +248,11 @@ void app_init_rtltr(void) {
 }
 ```
 
-### If strings are VISUAL encoded call `rtltr_strings_are_visual_encoded()`, no app-settings
+### If strings are VISUAL encoded call `rtltr_strings_are_visual_encoded()`
 ```c
 void app_init_rtltr(void) {
-  rtltr_ensure_registered_string_arrays_capacity(2);
-  rtltr_register_string_array(example_hebrew_strings_array1, NUM_STRINGS1);
-  rtltr_register_string_array(example_hebrew_strings_array2, NUM_STRINGS2);
+  rtltr_ensure_registered_strings_capacity(NUM_STRINGS1);
+  rtltr_register_char_matrix(example_hebrew_char_matrix, NUM_STRINGS1, STRING_LEN);
 
   // If the strings in your code are visually encoded (ISO-8859-8 "םולש", "ملس") instead of the
   // recommended logical (ISO-8859-8-I "שלום", "سلم")
@@ -245,9 +273,12 @@ void app_update_rtl_layers() {
 }
 
 void app_init_rtltr(void) {
-  rtltr_ensure_registered_string_arrays_capacity(2);
-  rtltr_register_string_array(example_hebrew_strings_array1, NUM_STRINGS1);
-  rtltr_register_string_array(example_hebrew_strings_array2, NUM_STRINGS2);
+  rtltr_ensure_registered_strings_capacity(NUM_STRINGS1);
+  rtltr_register_char_matrix(example_hebrew_char_matrix, NUM_STRINGS1, STRING_LEN);
+
+  rtltr_ensure_registered_string_arrays_capacity(N);
+  rtltr_register_string_array(example_hebrew_strings_array, NUM_STRINGS2);
+  //...
 
   app_message_register_inbox_received(rtltr_inbox_received_handler);
   app_message_open(128, 128);
@@ -285,6 +316,14 @@ pebble-rtltr library was written by Gavriel Fleischer [pebble-rtltr](https://git
 pebble-rtltr is based on code from Collin Fair [elbbeP](https://github.com/cpfair/elbbep)
 
 ## Change log
+
+#### 0.3.2
+
+* added rtltr_register_char_matrix()
+
+#### 0.3.1
+
+* bug fixes
 
 #### 0.3.0
 

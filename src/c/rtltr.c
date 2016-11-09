@@ -34,6 +34,14 @@ void rtltr_ensure_registered_string_arrays_capacity(size_t capacity) {
   }
 }
 
+void rtltr_register_char_matrix(char* const matrix[], size_t count, size_t str_len) {
+  rtltr_ensure_registered_strings_capacity(count + (rtltr_registered_strings_capacity
+     ? rtltr_registered_string_arrays[rtltr_registered_strings_index].size : 0));
+  for (size_t i = 0; i < count; i++) {
+    rtltr_register_string((char*)matrix + (i * str_len));
+  }
+}
+
 void rtltr_register_string_array(char* const str_arr[], size_t str_arr_size) {
   rtltr_ensure_registered_string_arrays_capacity(rtltr_registered_string_arrays_size+1);
   rtltr_registered_string_arrays[rtltr_registered_string_arrays_size].arr = (char**)str_arr;
