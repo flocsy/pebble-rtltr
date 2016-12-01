@@ -1,7 +1,7 @@
 /**
   * Copyright (c) 2016 Gavriel Fleischer <flocsy@gmail.com>
   *
-  * Use `npm install pebble-clay --save` to add pebble-clay to your app.
+  * Use `pebble package install pebble-clay` to add pebble-clay to your app.
   * This is a simple example, add these lines to your app's main js.
   * See: config.js
   */

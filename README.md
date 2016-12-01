@@ -188,6 +188,61 @@ rtltr_load_settings();
 rtltr_init();
 ```
 
+#### Add the RTLTR_OVERRIDE toggle to your settings screen
+The easiest way to add settings is by using pebble-clay. However you can build your custom settings page if you wish.
+The only thing you need to do is to call the message_key of the setting RTLTR_OVERRIDE and it should be a boolean or 0 | 1
+
+##### package.json
+If you don't have pebble-clay in your project yet, then add it to your dependencies.
+```shell
+pebble package install pebble-clay
+```
+And add `configurable` capability
+```javascript
+{
+    "dependencies": {
+        "pebble-clay": "^1.0.4",
+        "pebble-rtltr": "^0.3.2"
+    },
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        ...
+```
+
+##### config.js
+Create the config either by copying the example from pebble-rtltr into your existing config, or by including it
+```javascript
+const RTLTR_CONFIG = require('pebble-rtltr/config');
+module.exports = [
+  {
+    "type": "heading",
+    "defaultValue": "App Configuration"
+  },
+  /*
+   * put your other configuration settings here...
+   * 
+   * then include RTLTR_CONFIG
+   * or you can copy it into your config as well, just keep the messageKey: RTLTR_OVERRIDE
+   */
+  RTLTR_CONFIG,
+  {
+    "type": "submit",
+    "defaultValue": "Save Settings"
+  }
+];
+
+```
+
+##### index.js
+Initialize Clay in the beginning of your index.js or app.js
+```javascript
+const Clay = require('pebble-clay');
+const clayConfig = require('./config');
+const clay = new Clay(clayConfig);
+```
+
 ### elbbeP firmware detection
 
 ```c
@@ -311,11 +366,16 @@ GNU GENERAL PUBLIC LICENSE 3.0
 
 ## Credits
 
-pebble-rtltr library was written by Gavriel Fleischer [pebble-rtltr](https://github.com/flocsy/pebble-rtltr)
+pebble-rtltr package was written by Gavriel Fleischer [pebble-rtltr](https://github.com/flocsy/pebble-rtltr)
 
 pebble-rtltr is based on code from Collin Fair [elbbeP](https://github.com/cpfair/elbbep)
 
 ## Change log
+
+#### 0.3.3
+
+* added debug logging
+* removed irrelevant C header files
 
 #### 0.3.2
 

@@ -78,7 +78,7 @@ void rtltr_strings_are_visual_encoded(void) {
 void rtltr_reverse_string(char* const str) {
   if (str && *str) {
 #if defined(RTLTR_ENABLE_MULTILINE_STRINGS) && RTLTR_ENABLE_MULTILINE_STRINGS == 1
-//    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string(multiline): before: %p -> %s", str, str);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "rtltr_reverse_string(multiline): before: %p -> %s", str, str);
     const char *start = (const char*)str;
     char *end;
     do {
@@ -90,10 +90,10 @@ void rtltr_reverse_string(char* const str) {
       start = end + 1;
     } while (*end != '\0');
 #else
-//    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string: before: %p -> %s", str, str);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "rtltr_reverse_string: before: %p -> %s", str, str);
     rtl_apply(str, str + strlen(str) - 1);
 #endif
-//    APP_LOG(APP_LOG_LEVEL_DEBUG, "rtltr_reverse_string: after: %p -> %s", str, str);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "rtltr_reverse_string: after: %p -> %s", str, str);
   }
 }
 
@@ -103,6 +103,7 @@ void rtltr_reverse_registered_strings(void) {
                                          != rtltr_is_overridden_from_settings
 #endif
                                                                              ) ^ is_elbbep()) {
+    APP_LOG(APP_LOG_LEVEL_INFO, "rtltr_reverse_registered_strings: reversing");
     rtltr_are_strings_logical_encoded = !rtltr_are_strings_logical_encoded;
     for (size_t a = 0; a < rtltr_registered_string_arrays_size; a++) {
       for (size_t s = 0; s < rtltr_registered_string_arrays[a].size; s++) {
@@ -114,6 +115,8 @@ void rtltr_reverse_registered_strings(void) {
       (*rtltr_callback_after_reverse_registered_strings)();
     }
 #endif
+  } else {
+    APP_LOG(APP_LOG_LEVEL_INFO, "rtltr_reverse_registered_strings: not reversing");
   }
 }
 

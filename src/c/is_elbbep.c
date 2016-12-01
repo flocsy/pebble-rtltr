@@ -1,7 +1,11 @@
+/*
+ * Copyright (c) 2016 Gavriel Fleischer <flocsy@gmail.com>
+ */
+
 #include "is_elbbep.h"
 
 #define MAGIC_ELBBEP_OVERFLOW_MODE ((GTextOverflowMode)0xE5);
-static const char const *arabic_string = "ل";
+static const char * const arabic_string = "ل";
 
 bool is_elbbep() {
   static bool ran = false;
