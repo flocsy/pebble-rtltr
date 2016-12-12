@@ -18,6 +18,8 @@ void rtltr_reverse_registered_strings(void);
 void rtltr_init(void);
 void rtltr_free(void);
 
+char * rtltr_strcpy(char * dst, const char * src);
+
 #if defined(RTLTR_INCLUDE_SETTINGS) && RTLTR_INCLUDE_SETTINGS == 1
 //void rtltr_save_settings(void);
 void rtltr_load_settings(void);

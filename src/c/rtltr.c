@@ -124,6 +124,12 @@ void rtltr_init(void) {
   rtltr_reverse_registered_strings();
 }
 
+char * rtltr_strcpy(char * dst, const char * src) {
+    strcpy(dst, src);
+    rtltr_reverse_string(dst);
+    return dst;
+}
+
 static void rtltr_free_registered_strings(void) {
   if (rtltr_registered_strings_index != -1) {
     free(rtltr_registered_string_arrays[rtltr_registered_strings_index].arr);
