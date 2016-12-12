@@ -1,7 +1,7 @@
 {
   "name": "pebble-rtltr",
   "author": "Gavriel Fleischer <flocsy@gmail.com> (http://neswork.com)",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "RTLTR for Pebble - create apps/watchfaces that display RTL on every watch regardless of the firmware",
   "license": "GPLv3",
   "repository": "flocsy/pebble-rtltr",
@@ -14,13 +14,29 @@
     "dist.zip"
   ],
   "main": "src/c/rtltr.c",
-  "keywords": ["pebble-package", "RTL", "Hebrew", "Arabic", "Pebble", "elbbeP"],
+  "keywords": [
+    "pebble-package",
+    "RTL",
+    "Hebrew",
+    "Arabic",
+    "Pebble",
+    "elbbeP"
+  ],
   "dependencies": {},
+  "devDependencies": {
+    "pebble-platform-sdk": "^0.0.3"
+  },
   "scripts": {
     "clean": "pebble clean",
     "distclean": "npm run clean && rm -rf build dist.zip cache",
     "download-sdk": "npm run clean && bin/download-sdk.sh",
-    "build": "npm run download-sdk && pebble build --sdk=3.13",
+    "build": "npm run download-sdk && npm run build-all",
+    "build-all": "pebble-platform-sdk aplite=3.13.1 basalt=3.13.1 chalk=3.13.1 diorite=4.0 emery=4.2.2",
+    "build-aplite": "pebble build --sdk=3.13.1",
+    "build-basalt": "pebble build --sdk=3.13.1",
+    "build-chalk": "pebble build --sdk=3.13.1",
+    "build-diorite": "pebble build --sdk=4.0",
+    "build-emery": "pebble build --sdk=4.2.2",
     "test": "make test",
     "pebble-publish": "npm run clean && npm run build && pebble package publish"
   },
